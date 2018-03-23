@@ -88,7 +88,7 @@
               DISPLAY DIA   AT 0205.
               DISPLAY MES   AT 0208.
               DISPLAY ANO   AT 0211.
-      * ----------------------------- Inicialização das variáveis
+      * ----------------------------- InicializaÃ§Ã£o das variÃ¡veis
               MOVE SPACE  TO 	WS-OPCAO 
 				WS-SALVA
               			NOME-E.
@@ -121,7 +121,7 @@
               MOVE ZEROS TO WS-FL.
               PERFORM LER-REGISTRO UNTIL WS-FL >= 1.
               IF WS-FL = 2
-                 DISPLAY "REGISTO JA CADSTRADO" AT 2030.
+                 DISPLAY "REGISTRO JA CADASTRADO" AT 2030.
 
        LER-REGISTRO.
               READ PRODUTOS NEXT AT END MOVE 1 TO WS-FL.
@@ -144,7 +144,7 @@
               MOVE REG-PROD-W TO REG-PROD.
               WRITE REG-PROD.
               IF ARQST NOT = "00"
-                   DISPLAY "ERRO DE GRAVA€ÇO" AT 1535
+                   DISPLAY "ERRO DE GRAVAâ‚¬Ã‡O" AT 1535
                    STOP " ".
               CLOSE PRODUTOS.
               PERFORM ABRE-ARQ.

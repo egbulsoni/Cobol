@@ -144,7 +144,7 @@
               MOVE REG-PROD-W TO REG-PROD.
               WRITE REG-PROD.
               IF ARQST NOT = "00"
-                   DISPLAY "ERRO DE GRAVA€ÇO" AT 1535
+                   DISPLAY "ERRO DE GRAVACAO" AT 1535
                    STOP " ".
               CLOSE PRODUTOS.
               PERFORM ABRE-ARQ.

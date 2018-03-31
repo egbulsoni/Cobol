@@ -42,7 +42,7 @@
 
          01 ARQST                   PIC X(02).
          01 WS-OPCAO                PIC X(01) VALUE SPACES.
-         01 WS-SALVA                PIC X(01) VALUE SPACES.
+         01 WS-ATUALIZA                PIC X(01) VALUE SPACES.
          01 WS-ESPACO               PIC X(30) VALUE SPACES.
          01 WS-MENS1                PIC X(20) VALUE "FIM DE PROGRAMA".
          01 WS-FL                   PIC 9(01) VALUE ZEROS.
@@ -74,9 +74,9 @@
               PERFORM IMP-TELA.
               PERFORM ENTRA-DADOS.
               PERFORM CALCULO-TOTAL.
-              PERFORM GRAVAR  UNTIL WS-SALVA = "S" OR "N".
-              IF WS-SALVA = "S"
-                 PERFORM GRAVA-REG
+              PERFORM ATUALIZAR  UNTIL WS-ATUALIZA = "S" OR "N".
+              IF WS-ATUALIZA = "S"
+                 PERFORM ATUALIZA-REG
               ELSE
                  DISPLAY "REGISTRO NAO GRAVADO" AT 2030.
               PERFORM CONTINUA  UNTIL WS-OPCAO = "S" OR "N".
@@ -88,9 +88,9 @@
               DISPLAY DIA   AT 0205.
               DISPLAY MES   AT 0208.
               DISPLAY ANO   AT 0211.
-      * ----------------------------- Inicialização das variáveis
+      * ----------------------------- InicializaÃ§Ã£o das variÃ¡veis
               MOVE SPACE  TO 	WS-OPCAO 
-				WS-SALVA
+				WS-ATUALIZA
               			NOME-E.
               MOVE ZEROS  TO 	CODIGO-E 
 				QTDADE-E
@@ -100,7 +100,8 @@
               DISPLAY WS-ESPACO AT 1535.
 
        ENTRA-DADOS.
-              PERFORM ENTRA-CODIGO UNTIL WS-FL = 1.
+              PERFORM ENTRA-CODIGO UNTIL WS-FL = 2.
+              DISPLAY CODIGO AT 3030.
               ACCEPT NOME-E     AT 0636 WITH PROMPT AUTO.
               ACCEPT QTDADE-E   AT 0831 WITH PROMPT AUTO.
               ACCEPT UNITARIO-E AT 1035 WITH PROMPT AUTO.
@@ -120,8 +121,8 @@
               PERFORM ABRE-ARQ.
               MOVE ZEROS TO WS-FL.
               PERFORM LER-REGISTRO UNTIL WS-FL >= 1.
-              IF WS-FL = 2
-                 DISPLAY "REGISTRO JA CADASTRADO" AT 2030.
+              IF WS-FL = 1
+                 DISPLAY "REGISTRO NAO CADASTRADO" AT 2030.
 
        LER-REGISTRO.
               READ PRODUTOS NEXT AT END MOVE 1 TO WS-FL.
@@ -134,15 +135,13 @@
               MOVE    TOTAL-W TO TOTAL-E.
               DISPLAY TOTAL-E AT 1232.
 
-       GRAVAR.
-              DISPLAY "SALVAR (S/N)? [ ]" AT 1430.
-              ACCEPT WS-SALVA AT 1445 WITH PROMPT AUTO.
+       ATUALIZAR.
+              DISPLAY "ATUALIZAR (S/N)? [ ]" AT 1430.
+              ACCEPT WS-ATUALIZA AT 1445 WITH PROMPT AUTO.
 
-       GRAVA-REG.
-              CLOSE PRODUTOS.
-              OPEN EXTEND PRODUTOS.
-              MOVE REG-PROD-W TO REG-PROD.
-              WRITE REG-PROD.
+       ATUALIZA-REG.
+              REWRITE REG-PROD.
+              DISPLAY ARQST AT 1635.
               IF ARQST NOT = "00"
                    DISPLAY "ERRO DE GRAVACAO" AT 1535
                    STOP " ".

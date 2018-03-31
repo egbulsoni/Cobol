@@ -88,7 +88,7 @@
               DISPLAY DIA   AT 0205.
               DISPLAY MES   AT 0208.
               DISPLAY ANO   AT 0211.
-      * ----------------------------- InicializaÁ„o das vari·veis
+      * ----------------------------- Inicializa√ß√£o das vari√°veis
               MOVE SPACE  TO 	WS-OPCAO 
 				WS-SALVA
               			NOME-E.

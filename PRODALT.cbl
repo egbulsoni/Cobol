@@ -88,7 +88,7 @@
               DISPLAY DIA   AT 0205.
               DISPLAY MES   AT 0208.
               DISPLAY ANO   AT 0211.
-      * ----------------------------- Inicialização das variáveis
+      * ----------------------------- InicializaÃ§Ã£o das variÃ¡veis
               MOVE SPACE  TO 	WS-OPCAO 
 				WS-ATUALIZA
               			NOME-E.
@@ -101,6 +101,10 @@
 
        ENTRA-DADOS.
               PERFORM ENTRA-CODIGO UNTIL WS-FL = 2.
+              DISPLAY NOME AT 0670.
+              DISPLAY QTDADE AT 0870.
+              DISPLAY UNITARIO AT 1070.
+              DISPLAY TOTAL AT 1270.
               ACCEPT NOME-E     AT 0636 WITH PROMPT AUTO.
               ACCEPT QTDADE-E   AT 0831 WITH PROMPT AUTO.
               ACCEPT UNITARIO-E AT 1035 WITH PROMPT AUTO.
@@ -149,7 +153,7 @@
               PERFORM ABRE-ARQ.
 
        CONTINUA.
-              DISPLAY "CONTINUA (S/N)? [ ]" AT 1430.
+              DISPLAY "CONTINUA (S/N)? [ ] " AT 1430.
               ACCEPT WS-OPCAO AT 1447 WITH PROMPT AUTO.
               IF WS-OPCAO = "S" OR = "N"
                      DISPLAY WS-ESPACO AT 1430
